@@ -1,0 +1,98 @@
+create a Python script that analyzes the records to calculate each of the following values:
+file_path = 'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv
+'
+budget_data = pd.read_csv(file_path)
+print(f"Total number of months: {86}")
+
+
+Calculate the total number of months included in the dataset
+
+
+total_months = budget_data['Date'].nunique()
+print(f"Total number of months: {86}")
+>>> print(f"Total number of months: {total_months}")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'total_months' is not defined
+>>> print(f"Total number of months: {87}")
+Total number of months: 87
+>>> print(f"Total number of months: {86}")
+Total number of months: 86
+
+Calculate the net total amount of "Profit/Losses" over the entire period
+
+	Define the file path using raw string notation
+file_path = file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+"C:\Users\abiga\OneDrive\Desktop\python-challenge\PyBank\main.py"
+budget_data = pd.read_csv(file_path)
+net_total = budget_data['Profit/Losses'].sum()
+print(f"Net total amount of 'profit/Losses' over the entire period: ${net_total}")
+Net total amount of 'Profit/Losses' over the entire period: $22564198
+
+
+
+calculate the changes in "Profit/Losses" over the entire period, and then the average of those changes
+
+	Define the file path using raw string notation
+file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+	Calculates the changes in "Profit/Losses" by using the diff() method, which computes 	the difference between each row and the previous row.
+budget_data['Change'] = budget_data['Profit/Losses'].diff()
+
+	Computes the average of these changes using the mean() method.
+average_change = budget_data['Change'].mean()
+	Prints the average change, formatted to two decimal places.
+print(f"Average change in 'Profit/Losses' over the entire period: ${average_change:.2f}")
+Average change in 'Profit/Losses' over the entire period: $-8311.11
+>>> file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+>>> budget_data = pd.read_csv(file_path)
+>>> budget_data['Change'] = budget_data['Profit/Losses'].diff()
+>>> average_change = budget_data['Change'].mean()
+>>> print(f"Average change in 'Profit/Losses' over the entire period: ${average_change:.2f}")
+Average change in 'Profit/Losses' over the entire period: $-8311.11
+
+
+The greatest increase in profits (date and amount) over the entire period
+	Define file path
+file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+	Load the CSV file
+budget_data = pd.read_csv(file_path)
+	Calculates the changes in "Profit/Losses" by using the diff() method, which computes 	the difference between each row and the previous row.
+budget_data['Change'] = budget_data['Profit/Losses'].diff()
+	Calculate the greatest increase in profits (date and amount)
+greatest_increase = budget_data.loc[budget_data['Change'].idxmax()]
+	results:
+print(f"Greatest increase in profits: {greatest_increase['Date']} (${greatest_increase['Change']:.2f})")
+
+
+>>> file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+>>> budget_data = pd.read_csv(file_path)
+>>> budget_data['Change'] = budget_data['Profit/Losses'].diff()
+>>> greatest_increase = budget_data.loc[budget_data['Change'].idxmax()]
+>>> print(f"Greatest increase in profits: {greatest_increase['Date']} (${greatest_increase['Change']:.2f})")
+Greatest increase in profits: Aug-16 ($1862002.00)
+
+
+
+Calculate the greatest decrease in profits (date and amount) over the entire period
+
+	define file path with raw string
+file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+budget_data = pd.read_csv(file_path)
+	Calculates the changes in "Profit/Losses" by using the diff() method, which computes 	the difference between each row and the previous row.
+budget_data['Change'] = budget_data['Profit/Losses'].diff()
+	Identifies the row with the greatest decrease in profits using the idxmin() method to 	find the index of the minimum change.
+greatest_decrease = budget_data.loc[budget_data['Change'].idxmin()]
+	results
+	The greatest decrease in profits (date and amount) over the entire period
+print(f"Greatest decrease in profits: {greatest_decrease['Date']} (${greatest_decrease['Change']:.2f})")
+
+>>> file_path = r'C:\Users\abiga\Downloads\Starter_Code (4)\Starter_Code\PyBank\Resources\budget_data.csv'
+>>> budget_data = pd.read_csv(file_path)
+>>> budget_data['Change'] = budget_data['Profit/Losses'].diff()
+>>> greatest_decrease = budget_data.loc[budget_data['Change'].idxmin()]
+>>> print(f"Greatest decrease in profits: {greatest_decrease['Date']} (${greatest_decrease['Change']:.2f})")
+Greatest decrease in profits: Feb-14 ($-1825558.00)
+
+
+
+import pandas as pandas
